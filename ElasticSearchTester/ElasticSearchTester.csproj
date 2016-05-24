@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03D4C84E-C002-466E-A9EE-5220BCA1F3BE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElasticSearchTester</RootNamespace>
+    <AssemblyName>ElasticSearchTester</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elasticsearch.Net, Version=2.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elasticsearch.Net.2.3.1\lib\net45\Elasticsearch.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\NEST.2.3.1\lib\net45\Nest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="ESUtility.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\proceedingsofzoo19221zool.sql" />
+    <Resource Include="Data\proceedingsofzoo19221zool.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0001.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0002.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0003.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0004.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0005.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0008.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0009.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0010.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0011.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0012.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0013.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0014.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0015.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0016.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0017.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0018.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0019.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0020.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0021.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0022.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0023.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0024.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0025.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0026.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0027.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0028.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0029.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0030.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0031.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0032.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0033.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0034.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0035.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0036.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0037.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0038.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0039.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0040.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0041.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0042.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0043.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0044.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0045.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0046.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0047.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0048.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0049.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0050.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0051.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0052.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0053.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0054.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0055.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0056.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0057.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0058.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0059.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0060.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0061.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0062.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0063.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0064.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0065.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0066.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0067.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0068.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0069.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0070.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0071.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0072.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0073.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0074.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0075.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0076.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0077.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0078.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0079.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0080.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0081.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0082.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0083.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0084.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0085.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0086.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0087.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0088.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0089.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0090.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0091.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0092.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0093.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0094.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0095.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0096.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0097.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0098.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0099.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0100.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0101.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0102.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0103.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0104.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0105.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0106.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0107.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0108.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0109.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0110.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0111.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0112.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0113.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0114.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0115.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0116.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0117.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0118.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0119.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0120.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0121.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0122.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0123.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0124.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0125.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0126.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0127.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0128.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0129.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0130.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0131.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0132.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0133.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0134.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0135.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0136.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0137.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0138.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0139.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0140.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0141.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0142.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0143.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0144.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0145.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0146.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0147.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0148.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0149.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0150.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0151.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0152.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0153.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0154.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0155.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0156.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0157.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0158.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0159.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0160.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0161.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0162.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0163.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0164.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0165.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0166.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0167.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0168.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0169.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0170.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0171.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0172.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0173.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0174.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0175.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0176.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0177.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0178.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0179.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0180.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0181.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0182.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0183.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0184.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0185.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0186.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0187.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0188.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0189.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0190.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0191.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0192.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0193.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0194.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0195.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0196.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0197.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0198.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0199.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0200.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0201.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0202.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0203.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0204.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0205.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0206.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0207.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0208.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0209.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0210.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0211.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0212.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0213.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0214.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0215.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0216.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0217.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0218.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0219.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0220.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0221.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0222.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0223.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0224.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0225.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0226.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0227.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0228.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0229.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0230.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0231.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0232.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0233.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0234.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0235.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0236.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0237.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0238.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0239.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0240.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0241.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0242.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0243.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0244.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0245.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0246.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0247.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0248.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0249.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0250.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0251.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0252.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0253.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0254.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0255.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0256.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0257.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0258.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0259.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0260.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0261.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0262.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0263.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0264.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0265.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0266.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0267.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0268.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0269.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0270.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0271.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0272.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0273.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0274.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0275.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0276.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0277.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0278.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0279.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0280.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0281.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0282.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0283.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0284.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0285.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0286.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0287.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0288.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0289.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0290.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0291.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0292.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0293.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0294.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0295.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0296.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0297.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0298.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0299.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0300.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0301.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0302.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0303.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0304.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0305.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0306.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0307.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0308.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0309.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0310.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0311.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0312.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0313.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0314.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0315.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0316.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0317.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0318.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0319.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0320.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0321.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0322.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0323.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0324.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0325.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0326.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0327.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0328.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0329.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0330.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0331.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0332.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0333.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0334.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0335.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0336.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0337.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0338.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0339.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0340.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0341.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0342.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0343.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0344.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0345.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0346.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0347.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0348.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0349.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0350.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0351.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0352.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0353.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0354.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0355.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0356.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0357.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0358.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0359.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0360.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0361.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0362.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0363.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0364.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0365.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0366.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0367.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0368.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0369.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0370.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0371.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0372.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0373.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0374.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0375.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0376.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0377.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0378.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0379.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0380.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0381.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0382.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0383.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0384.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0385.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0386.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0387.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0388.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0389.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0390.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0391.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0392.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0393.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0394.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0395.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0396.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0397.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0398.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0399.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0400.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0401.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0402.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0403.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0404.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0405.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0406.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0407.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0408.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0409.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0410.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0411.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0412.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0413.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0414.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0415.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0416.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0417.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0418.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0419.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0420.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0421.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0422.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0423.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0424.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0425.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0426.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0427.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0428.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0429.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0430.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0431.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0432.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0433.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0434.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0435.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0436.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0437.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0438.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0439.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0440.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0441.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0442.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0443.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0444.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0445.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0446.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0447.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0448.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0449.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0450.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0451.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0452.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0453.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0454.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0455.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0456.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0457.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0458.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0459.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0460.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0461.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0462.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0463.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0464.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0465.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0466.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0467.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0468.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0469.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0470.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0471.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0472.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0473.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0474.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0475.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0476.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0477.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0478.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0479.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0480.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0481.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0482.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0483.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0484.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0485.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0486.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0487.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0488.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0489.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0490.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0491.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0492.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0493.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0494.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0495.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0496.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0497.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0498.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0499.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0500.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0501.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0502.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0503.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0504.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0505.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0506.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0507.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0508.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0509.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0510.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0511.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0512.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0513.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0514.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0515.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0516.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0517.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0518.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0519.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0520.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0521.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0522.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0523.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0524.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0525.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0526.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0527.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0528.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0529.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0530.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0531.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0532.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0533.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0534.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0535.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0536.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0537.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0538.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0539.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0540.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0541.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0542.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0543.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0544.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0545.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0546.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0547.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0548.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0549.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0550.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0551.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0552.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0553.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0554.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0555.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0556.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0557.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0558.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0559.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0560.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0561.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0562.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0563.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0564.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0565.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0566.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0567.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0568.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0569.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0570.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0571.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0572.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0573.txt" />
+    <Resource Include="Data\proceedingsofzoo19221zool\proceedingsofzoo19221zool_0574.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
